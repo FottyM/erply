@@ -3,10 +3,13 @@ import axios from 'axios';
 import isEmpty from 'lodash/isEmpty';
 import chunk from 'lodash/chunk';
 import isNil from 'lodash/isNil';
+import snakeCase from 'lodash/snakeCase';
+import { Route, Link, NavLink, Switch } from 'react-router-dom';
 import ShoppingItem from './ShoppingItem';
 import SearchFilter from './SearchFilters';
 import Paginator from './Paginator';
 import data from '../../data.json';
+import ShoppingItemDetail from './ShoppingItemDetails';
 
 class ShoppingList extends Component {
   state = {
@@ -39,17 +42,20 @@ class ShoppingList extends Component {
   render() {
     // itemsChunks from state don't forget
     const { current } = this.state;
+    const { match } = this.props;
     const itemsChunks = chunk(data, 32);
     let items =
       !isEmpty(itemsChunks) && !isNil(current) ? itemsChunks[current] : [];
-    console.log(items);
     return (
       <div className="row">
         {!isEmpty(items) ? (
-          items.map(item => <ShoppingItem {...item} key={item.id} />)
+          items.map(item => (
+            <ShoppingItem {...item} match={match} key={item.id} />
+          ))
         ) : (
           <h2 className="text-danger text-center">Loading...</h2>
         )}
+
         <Paginator data={itemsChunks} changeIndex={this.updateDisplay} />
       </div>
     );

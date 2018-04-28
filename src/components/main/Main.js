@@ -7,6 +7,7 @@ import {
   Switch
 } from 'react-router-dom';
 import ShoppingContainer from '../shopping/ShoppingContainer';
+import ShoppingItemDetails from '../shopping/ShoppingItemDetails';
 
 class Main extends Component {
   static propTypes = {};
@@ -16,6 +17,7 @@ class Main extends Component {
       <main>
         <Switch>
           <Route exact path="/" component={ShoppingContainer} />
+          <Route path="/store/items/:item" component={ShoppingItemDetails} />
           <Route path="/store/items" component={ShoppingContainer} />
           <Route
             path="/about"

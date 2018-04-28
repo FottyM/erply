@@ -27,7 +27,7 @@ class Paginator extends Component {
     const { current, previous, next } = this.state;
     const { data } = this.props;
 
-    if (current === 0) this.setState({ current: -1, previous: 0, next: 1 });
+    if (current === 0) this.setState({ current: 0, previous: -1, next: 1 });
 
     if (data.length > 0 && current > 0) {
       this.setState({
@@ -43,7 +43,7 @@ class Paginator extends Component {
 
   jumpToPage = index => {
     if (index === 0) {
-      this.setState({ current: 0, previous: 0, next: 1 });
+      this.setState({ current: 0, previous: -1, next: 1 });
       this.changeIndex();
       this.scrollBy(0, 3);
     }

@@ -7,6 +7,7 @@ class ShoppingContainer extends Component {
   static propTypes = {};
 
   render() {
+    const { match } = this.props;
     return (
       <div className="container-fluid">
         <div className="row">
@@ -15,7 +16,7 @@ class ShoppingContainer extends Component {
           </div>
           <div className="col-10">
             <h2 className="text-center text-primary py-3">Shopping Items</h2>
-            <ShoppingList />
+            <ShoppingList match={match} />
           </div>
         </div>
       </div>
