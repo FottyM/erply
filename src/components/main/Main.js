@@ -1,16 +1,43 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import chunk from 'lodash/chunk';
 import {
   BrowserRouter as Router,
   Route,
   Redirect,
   Switch
 } from 'react-router-dom';
+import data from '../../data.json';
 import ShoppingContainer from '../shopping/ShoppingContainer';
 import ShoppingItemDetails from '../shopping/ShoppingItemDetails';
 
+const AppContext = React.createContext();
+
 class Main extends Component {
-  static propTypes = {};
+  state = {
+    itemsChunks: []
+  };
+
+  componentDidMount() {
+    this.loadDataFromServer();
+  }
+
+  loadDataFromServer = () => {
+    axios
+      .request({
+        method: 'GET',
+        url: 'https://erply-challenge.herokuapp.com/list',
+        params: {
+          AUTH: 'fae7b9f6-6363-45a1-a9c9-3def2dae206d'
+        }
+      })
+      .then(res => {
+        const itemsChunks = chunk(res.data, 32);
+        this.setState({ itemsChunks });
+      })
+      .catch(console.log);
+  };
 
   render() {
     return (

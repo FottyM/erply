@@ -20,7 +20,6 @@ class Paginator extends Component {
       this.changeIndex();
       this.scrollBy(0, 3);
     }
-    console.log(this.state);
   };
 
   handlePrevious = () => {
@@ -38,7 +37,6 @@ class Paginator extends Component {
       this.changeIndex();
       this.scrollBy(0, 3);
     }
-    console.log(this.state);
   };
 
   jumpToPage = index => {
@@ -56,7 +54,6 @@ class Paginator extends Component {
       this.changeIndex();
       this.scrollBy(0, 3);
     }
-    console.log(this.state);
   };
 
   scrollBy(distance, duration) {

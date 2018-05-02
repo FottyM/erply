@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const SearchFilter = props => {
   return (
-    <div className="position-fixed d-none d-md-block">
+    <div className="position-fixed">
       <ul className="nav flex-column">
         <li className="nav-item">
           <a className="nav-link active" href="#">
