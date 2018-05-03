@@ -8,6 +8,7 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom';
+import isEmpty from 'lodash/isEmpty';
 import data from '../../data.json';
 import ShoppingContainer from '../shopping/ShoppingContainer';
 import ShoppingItemDetails from '../shopping/ShoppingItemDetails';
@@ -50,7 +51,7 @@ class Main extends Component {
     return (
       <main>
         <Context.Consumer>
-          {context => (
+          {({ basket }) => (
             <button
               className="btn btn-warning"
               style={{
@@ -64,7 +65,7 @@ class Main extends Component {
             >
               Basket{' '}
               <span className="badge badge-danger">
-                {context.basket.length}
+                {!isEmpty(basket) ? basket.length : 0}
               </span>
             </button>
           )}

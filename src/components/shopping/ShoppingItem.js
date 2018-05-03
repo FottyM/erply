@@ -4,6 +4,7 @@ import currencyFormatter from 'currency-formatter';
 import { Link } from 'react-router-dom';
 import kebabCase from 'lodash/kebabCase';
 import truncate from 'lodash/truncate';
+import { AppContext as Context } from '../../Provider';
 
 const ShoppingItem = props => {
   return (
@@ -44,13 +45,21 @@ const ShoppingItem = props => {
               </p>
             </div>
           </Link>
-          <button
-            className="btn btn-block btn-warning text-light"
-            disabled={!props.instock}
-            style={{ cursor: !props.instock ? 'not-allowed' : '' }}
-          >
-            Add to basket
-          </button>
+          <Context.Consumer>
+            {({ addToBasket }) => {
+              console.log(props, 'ELON MUSK');
+              return (
+                <button
+                  className="btn btn-block btn-warning text-light"
+                  disabled={!props.instock}
+                  style={{ cursor: !props.instock ? 'not-allowed' : '' }}
+                  onClick={() => addToBasket(props)}
+                >
+                  Add to basket
+                </button>
+              );
+            }}
+          </Context.Consumer>
         </div>
       </LazyLoad>
     </div>

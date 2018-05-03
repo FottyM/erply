@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import currencyFormatter from 'currency-formatter';
+import isEmpty from 'lodash/isEmpty';
 import { AppContext as Context } from '../../Provider';
 
 class Basket extends Component {
@@ -6,8 +8,8 @@ class Basket extends Component {
     console.log(this.props, 'props====>>>>>>');
     return (
       <Context.Consumer>
-        {context => {
-          console.log(context, 'context====>>>>>>>');
+        {({ basket }) => {
+          let total = 0;
           return (
             <div
               className={`basket ${
@@ -21,7 +23,7 @@ class Basket extends Component {
                     onClick={this.props.closeBasket}
                     style={{
                       position: 'absolute',
-                      right: 5,
+                      left: 5,
                       top: 5,
                       zIndex: 3
                     }}
@@ -29,10 +31,24 @@ class Basket extends Component {
                     &times;
                   </button>
                   <div className="col-12 pt-5">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
-                    autem tempore, a rerum dolor beatae fugit debitis mollitia
-                    sint, porro nesciunt esse at odio, praesentium nobis
-                    recusandae nemo sequi dolore.
+                    {!isEmpty(basket) ? (
+                      basket.map(item => {
+                        total += item.price;
+                        return (
+                          <div>
+                            <p key={item.id}> {item.name} </p>
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <p>Nothing here</p>
+                    )}
+                  </div>
+                  <div className="col py-2">
+                    <hr />
+                    <h4 className="text-primary">
+                      Total: {currencyFormatter.format(total, { code: 'EUR' })}
+                    </h4>
                   </div>
                   <button className="btn btn-block btn-success mx-2">
                     Check out

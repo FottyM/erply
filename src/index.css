@@ -8482,7 +8482,7 @@ a.text-dark:focus {
   overflow-x: hidden;
   overflow-y: scroll;
   z-index: 2;
-  transition: width 0.5s ease-in-out;
+  transition: width 700ms ease-out;
 }
 .basket.show {
   width: 400px;

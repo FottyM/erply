@@ -11,9 +11,16 @@ class AppProvider extends Component {
   };
 
   addToBasket = item => {
+    debugger;
     this.setState({
       basket: [...this.state.basket, item]
     });
+
+    // try {
+    //   localStorage.setItem('basket', JSON.stringify(this.state.basket ))
+    // } catch (error) {
+    //   console.log(error)
+    // }
   };
 
   removeFromBasket = item => {
@@ -21,6 +28,13 @@ class AppProvider extends Component {
   };
 
   componentDidMount() {
+    try {
+      let basket = localStorage.getItem('basket');
+      basket = JSON.parse(basket);
+      this.setState({ basket });
+    } catch (error) {
+      console.error(error);
+    }
     this.setState({
       itemsChunks: chunk(data, 32)
     });

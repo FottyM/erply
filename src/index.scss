@@ -42,7 +42,7 @@ $theme-colors: ( "primary": #009688, "danger": #f44336);
   overflow-x: hidden;
   overflow-y: scroll;
   z-index: 2;
-  transition: width .5s ease-in-out;
+  transition: width 700ms ease-out;
   &.show{
     width: 400px;
   }
