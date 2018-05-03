@@ -34,7 +34,7 @@ class ShoppingList extends Component {
           <h2 className="text-danger text-center">Loading...</h2>
         )}
 
-        {/* <Paginator data={itemsChunks} changeIndex={this.updateDisplay} /> */}
+        <Paginator data={itemsChunks} changeIndex={this.updateDisplay} />
       </div>
     );
   }

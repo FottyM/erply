@@ -6,7 +6,18 @@ export const AppContext = React.createContext();
 
 class AppProvider extends Component {
   state = {
-    itemsChunks: []
+    itemsChunks: [],
+    basket: []
+  };
+
+  addToBasket = item => {
+    this.setState({
+      basket: [...this.state.basket, item]
+    });
+  };
+
+  removeFromBasket = item => {
+    // this.setState()
   };
 
   componentDidMount() {
@@ -16,8 +27,15 @@ class AppProvider extends Component {
   }
 
   render() {
+    console.log(this.state.basket);
     return (
-      <AppContext.Provider value={this.state}>
+      <AppContext.Provider
+        value={{
+          ...this.state,
+          addToBasket: this.addToBasket,
+          removeFromBasket: this.removeFromBasket
+        }}
+      >
         {this.props.children}
       </AppContext.Provider>
     );

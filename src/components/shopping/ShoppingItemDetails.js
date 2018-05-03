@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { AppContext as Context } from '../../Provider';
 import find from 'lodash/find';
 import isNil from 'lodash/isNil';
@@ -18,22 +18,13 @@ class ShoppingItemDetails extends Component {
     });
   };
 
-  handleClick = e => {
-    e.preventDefault();
-    if (this.state.quantity > 0) {
-      // add items to the shopping cart
-      return;
-    }
-    return;
-  };
-
-  getItem = (itemsChunks = [], id) => {
+  getItem = (itemsChunks = [], id, context) => {
     itemsChunks = flattenDeep(itemsChunks);
     const item = find(itemsChunks, { id: parseInt(id) });
-    // this.setState({ item })
+
     if (!isNil(item)) {
       return (
-        <div>
+        <Fragment>
           <div className="row">
             <div className="col-12 col-md-4 text-center my-5">
               <img src={item.image} className="img-fluid" alt={item.name} />
@@ -46,14 +37,29 @@ class ShoppingItemDetails extends Component {
               <ul className="list-group my-3">
                 <li className="list-group-item">
                   {' '}
-                  Description : {item.description}
+                  <span className="font-weight-bold"> Description </span> :{' '}
+                  {item.description}
                 </li>
                 <li className="list-group-item">
                   {' '}
-                  Product code: {item.productcode}
+                  <span className="font-weight-bold">
+                    {' '}
+                    Product code{' '}
+                  </span> : {item.productcode}
                 </li>
-                <li className="list-group-item"> Store : {item.store}</li>
-                <li className="list-group-item"> In stock {item.instock}</li>
+                <li className="list-group-item">
+                  {' '}
+                  <span className="font-weight-bold"> Store </span>:{' '}
+                  {item.store}
+                </li>
+                <li className="list-group-item">
+                  {' '}
+                  {item.instock ? (
+                    <span className="text-success"> In stock </span>
+                  ) : (
+                    <span className="text-danger"> Out of stock </span>
+                  )}
+                </li>
               </ul>
               <form className="form-inline">
                 <label
@@ -68,11 +74,16 @@ class ShoppingItemDetails extends Component {
                   id={`inlineFormInputName${item.id}`}
                   onChange={this.handleQteChange}
                   value={this.state.quantity}
+                  disabled={!item.instock}
                 />
                 <button
                   typye="submit"
                   className="btn btn-warning mb-2"
-                  onClick={this.handleClick}
+                  onClick={e => {
+                    e.preventDefault();
+                    context.addToBasket({ ...item, qte: this.state.quantity });
+                  }}
+                  disabled={!item.instock}
                 >
                   Add to Basket
                 </button>
@@ -87,7 +98,7 @@ class ShoppingItemDetails extends Component {
               ipsum alias sint quis, asperiores sunt?
             </div>
           </div>
-        </div>
+        </Fragment>
       );
     } else {
       return (
@@ -110,7 +121,7 @@ class ShoppingItemDetails extends Component {
         {context => {
           return (
             <div className="container">
-              {this.getItem(context.itemsChunks, match.params.item)}
+              {this.getItem(context.itemsChunks, match.params.item, context)}
             </div>
           );
         }}

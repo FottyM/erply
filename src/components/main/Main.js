@@ -11,12 +11,19 @@ import {
 import data from '../../data.json';
 import ShoppingContainer from '../shopping/ShoppingContainer';
 import ShoppingItemDetails from '../shopping/ShoppingItemDetails';
-
-const AppContext = React.createContext();
+import Basket from '../basket/Basket';
+import { AppContext as Context } from '../../Provider';
 
 class Main extends Component {
   state = {
-    itemsChunks: []
+    itemsChunks: [],
+    showBasket: false
+  };
+
+  closeBasket = () => {
+    this.setState({
+      showBasket: false
+    });
   };
 
   componentDidMount() {
@@ -42,6 +49,24 @@ class Main extends Component {
   render() {
     return (
       <main>
+        <Context.Consumer>
+          {context => (
+            <button
+              className="btn btn-warning"
+              style={{
+                position: 'fixed',
+                right: 10,
+                top: 80,
+                zIndex: 1,
+                borderRadius: 600
+              }}
+              onClick={e => this.setState({ showBasket: true })}
+            >
+              Basket{' '}
+              <span class="badge badge-danger">{context.basket.length}</span>
+            </button>
+          )}
+        </Context.Consumer>
         <Switch>
           <Route exact path="/" component={ShoppingContainer} />
           <Route path="/store/items/:item" component={ShoppingItemDetails} />
@@ -63,6 +88,10 @@ class Main extends Component {
             )}
           />
         </Switch>
+        <Basket
+          showBasket={this.state.showBasket}
+          closeBasket={this.closeBasket}
+        />
       </main>
     );
   }

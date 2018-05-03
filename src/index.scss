@@ -32,3 +32,18 @@ $theme-colors: ( "primary": #009688, "danger": #f44336);
   height: 250px;
   background: red;
 }
+
+.basket{
+  position: fixed;
+  height: 100%;
+  top: 0;
+  width: 0;
+  right: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  z-index: 2;
+  transition: width .5s ease-in-out;
+  &.show{
+    width: 400px;
+  }
+}
