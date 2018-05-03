@@ -60,10 +60,12 @@ class Main extends Component {
                 zIndex: 1,
                 borderRadius: 600
               }}
-              onClick={e => this.setState({ showBasket: true })}
+              onClick={() => this.setState({ showBasket: true })}
             >
               Basket{' '}
-              <span class="badge badge-danger">{context.basket.length}</span>
+              <span className="badge badge-danger">
+                {context.basket.length}
+              </span>
             </button>
           )}
         </Context.Consumer>
