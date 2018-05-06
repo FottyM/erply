@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import LazyLoad from 'react-lazyload';
 import currencyFormatter from 'currency-formatter';
 import { Link } from 'react-router-dom';
-import kebabCase from 'lodash/kebabCase';
 import truncate from 'lodash/truncate';
-import { AppContext as Context } from '../../Provider';
+import { AppContext as Context } from '../../store/Provider';
 
 const ShoppingItem = props => {
   return (
@@ -47,7 +46,6 @@ const ShoppingItem = props => {
           </Link>
           <Context.Consumer>
             {({ addToBasket }) => {
-              console.log(props, 'ELON MUSK');
               return (
                 <button
                   className="btn btn-block btn-warning text-light"

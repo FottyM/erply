@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { AppContext as Context } from '../../Provider';
+import { AppContext as Context } from '../../store/Provider';
 import find from 'lodash/find';
 import isNil from 'lodash/isNil';
 import flattenDeep from 'lodash/flattenDeep';
@@ -42,6 +42,11 @@ class ShoppingItemDetails extends Component {
                 </li>
                 <li className="list-group-item">
                   {' '}
+                  <span className="font-weight-bold"> Department </span> :{' '}
+                  {item.department}
+                </li>
+                <li className="list-group-item">
+                  {' '}
                   <span className="font-weight-bold">
                     {' '}
                     Product code{' '}
@@ -66,7 +71,7 @@ class ShoppingItemDetails extends Component {
                   className="sr-only"
                   htmlFor={`inlineFormInputName${item.id}`}
                 >
-                  Qunatity
+                  Quantity
                 </label>
                 <input
                   type="number"
@@ -77,7 +82,7 @@ class ShoppingItemDetails extends Component {
                   disabled={!item.instock}
                 />
                 <button
-                  typye="submit"
+                  type="submit"
                   className="btn btn-warning mb-2"
                   onClick={e => {
                     e.preventDefault();

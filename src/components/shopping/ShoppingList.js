@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import isEmpty from 'lodash/isEmpty';
-import chunk from 'lodash/chunk';
 import isNil from 'lodash/isNil';
-import snakeCase from 'lodash/snakeCase';
-import { Route, Link, NavLink, Switch } from 'react-router-dom';
 import ShoppingItem from './ShoppingItem';
-import SearchFilter from './SearchFilters';
-import Paginator from './Paginator';
-import ShoppingItemDetail from './ShoppingItemDetails';
+import Paginator from '../Paginator/Paginator';
 
 class ShoppingList extends Component {
   state = {

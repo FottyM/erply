@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SearchFilter from './SearchFilters';
 import ShoppingList from './ShoppingList';
-import { AppContext as Context } from '../../Provider';
+import { AppContext as Context } from '../../store/Provider';
 
 class ShoppingContainer extends Component {
+  static propTypes = {
+    match: PropTypes.object.isRequired
+  };
+
   render() {
     const { match } = this.props;
     return (

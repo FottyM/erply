@@ -1,11 +1,16 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import currencyFormatter from 'currency-formatter';
 import isEmpty from 'lodash/isEmpty';
-import { AppContext as Context } from '../../Provider';
+import { AppContext as Context } from '../../store/Provider';
 
 class Basket extends Component {
+  static propTypes = {
+    closeBasket: PropTypes.func.isRequired,
+    showBasket: PropTypes.bool.isRequired
+  };
+
   render() {
-    console.log(this.props, 'props====>>>>>>');
     return (
       <Context.Consumer>
         {({ basket }) => {

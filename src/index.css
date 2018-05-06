@@ -8456,7 +8456,6 @@ a.text-dark:focus {
   flex-direction: column;
   justify-content: end;
   align-items: flex-start;
-  height: auto;
   overflow: hidden;
   justify-self: end;
 }
@@ -8468,22 +8467,24 @@ a.text-dark:focus {
   transition: all 500ms ease-out;
 }
 
-.shoopin-item-card {
-  height: 250px;
-  background: red;
-}
-
 .basket {
   position: fixed;
   height: 100%;
   top: 0;
-  width: 0;
   right: 0;
   overflow-x: hidden;
   overflow-y: scroll;
+  width: 0;
   z-index: 2;
-  transition: width 700ms ease-out;
+  transition: width 700ms ease-out, opacity 1500ms ease;
+  opacity: 0.1;
 }
 .basket.show {
-  width: 400px;
+  width: 100%;
+  opacity: 1;
+}
+@media (min-width: 992px) {
+  .basket.show {
+    width: 400px;
+  }
 }

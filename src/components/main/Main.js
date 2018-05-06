@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import chunk from 'lodash/chunk';
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Switch
-} from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import isEmpty from 'lodash/isEmpty';
-import data from '../../data.json';
 import ShoppingContainer from '../shopping/ShoppingContainer';
 import ShoppingItemDetails from '../shopping/ShoppingItemDetails';
 import Basket from '../basket/Basket';
-import { AppContext as Context } from '../../Provider';
+import { AppContext as Context } from '../../store/Provider';
 
 class Main extends Component {
   state = {
@@ -77,7 +70,7 @@ class Main extends Component {
           <Route
             path="/about"
             render={({ match }) => (
-              <div>
+              <div className="container">
                 <h2>About us</h2> <p>{match.path}</p>
               </div>
             )}
@@ -85,7 +78,7 @@ class Main extends Component {
           <Route
             path="/contact"
             render={({ match }) => (
-              <div>
+              <div className="container">
                 <h2>Call me maybe</h2> <p>{match.path}</p>
               </div>
             )}

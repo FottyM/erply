@@ -3,22 +3,21 @@ $theme-colors: ( "primary": #009688, "danger": #f44336);
 .shopping-item-card {
   height: 450px;
   border: 1px solid #a0a0a0;
-  // -webkit-box-shadow: 0px 2px 19px -4px rgba(0,0,0,.75);
-  // -moz-box-shadow: 0px 2px 19px -4px rgba(0,0,0,.75);
-  // box-shadow: 0px 2px 19px -4px rgba(0,0,0,.75);
+
   .item-img-container {
     height: 250px;
   }
+
   .item-details {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: end;
     align-items: flex-start;
-    height: auto;
     overflow: hidden;
     justify-self: end;
   }
+
   &:hover {
     -webkit-box-shadow: 0px 4px 14px 1px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 4px 14px 1px rgba(250, 226, 226, 0.75);
@@ -28,22 +27,23 @@ $theme-colors: ( "primary": #009688, "danger": #f44336);
   }
 }
 
-.shoopin-item-card {
-  height: 250px;
-  background: red;
-}
 
 .basket{
   position: fixed;
   height: 100%;
   top: 0;
-  width: 0;
   right: 0;
   overflow-x: hidden;
   overflow-y: scroll;
+  width: 0;
   z-index: 2;
-  transition: width 700ms ease-out;
+  transition: width 700ms ease-out, opacity 1500ms ease;
+  opacity: .1;
   &.show{
+    width: 100%;
+    @include media-breakpoint-up(lg) {
     width: 400px;
+    }
+    opacity: 1;
   }
 }

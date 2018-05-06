@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import chunk from 'lodash/chunk';
-import data from './data.json';
+import flattenDeep from 'lodash/flattenDeep';
+import filter from 'lodash/filter';
+import data from '../data.json';
 
 export const AppContext = React.createContext();
 
@@ -11,20 +13,20 @@ class AppProvider extends Component {
   };
 
   addToBasket = item => {
-    debugger;
     this.setState({
       basket: [...this.state.basket, item]
     });
-
-    // try {
-    //   localStorage.setItem('basket', JSON.stringify(this.state.basket ))
-    // } catch (error) {
-    //   console.log(error)
-    // }
   };
 
   removeFromBasket = item => {
     // this.setState()
+  };
+
+  filterItems = terms => {
+    const items = flattenDeep(this.state.itemsChunks);
+    this.setState({
+      itemsChunks: chunk(filter(items, { terms }), 32)
+    });
   };
 
   componentDidMount() {
@@ -47,7 +49,8 @@ class AppProvider extends Component {
         value={{
           ...this.state,
           addToBasket: this.addToBasket,
-          removeFromBasket: this.removeFromBasket
+          removeFromBasket: this.removeFromBasket,
+          filterItems: this.filterItems
         }}
       >
         {this.props.children}

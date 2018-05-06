@@ -2,6 +2,11 @@ import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Paginator extends Component {
+  static propTypes = {
+    changeIndex: PropTypes.func.isRequired,
+    data: PropTypes.array.isRequired
+  };
+
   state = {
     current: 0,
     previous: -1,
@@ -119,10 +124,5 @@ class Paginator extends Component {
     );
   }
 }
-
-Paginator.propTypes = {
-  data: PropTypes.array.isRequired,
-  changeIndex: PropTypes.func.isRequired
-};
 
 export default Paginator;
