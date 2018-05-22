@@ -38,7 +38,6 @@ $theme-colors: ( "primary": #009688, "danger": #f44336);
   width: 0;
   z-index: 2;
   transition: width 700ms ease-out, opacity 1500ms ease;
-  opacity: .1;
   &.show{
     width: 100%;
     @include media-breakpoint-up(lg) {

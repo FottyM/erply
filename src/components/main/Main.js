@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import chunk from 'lodash/chunk';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import isEmpty from 'lodash/isEmpty';
-import ShoppingContainer from '../shopping/ShoppingContainer';
+import Shopping from '../shopping/';
 import ShoppingItemDetails from '../shopping/ShoppingItemDetails';
 import Basket from '../basket/Basket';
 import { AppContext as Context } from '../../store/Provider';
@@ -11,12 +11,12 @@ import { AppContext as Context } from '../../store/Provider';
 class Main extends Component {
   state = {
     itemsChunks: [],
-    showBasket: false
+    isBasketOpened: false
   };
 
-  closeBasket = () => {
+  toggleBasket = () => {
     this.setState({
-      showBasket: false
+      isBasketOpened: false
     });
   };
 
@@ -54,7 +54,7 @@ class Main extends Component {
                 zIndex: 1,
                 borderRadius: 600
               }}
-              onClick={() => this.setState({ showBasket: true })}
+              onClick={() => this.setState({ isBasketOpened: true })}
             >
               Basket{' '}
               <span className="badge badge-danger">
@@ -64,9 +64,15 @@ class Main extends Component {
           )}
         </Context.Consumer>
         <Switch>
-          <Route exact path="/" component={ShoppingContainer} />
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return <Redirect to="/store/items" />;
+            }}
+          />
           <Route path="/store/items/:item" component={ShoppingItemDetails} />
-          <Route path="/store/items" component={ShoppingContainer} />
+          <Route path="/store/items" component={Shopping} />
           <Route
             path="/about"
             render={({ match }) => (
@@ -85,8 +91,8 @@ class Main extends Component {
           />
         </Switch>
         <Basket
-          showBasket={this.state.showBasket}
-          closeBasket={this.closeBasket}
+          isOpened={this.state.isBasketOpened}
+          toggle={this.toggleBasket}
         />
       </main>
     );

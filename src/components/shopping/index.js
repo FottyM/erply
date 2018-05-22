@@ -4,7 +4,7 @@ import SearchFilter from './SearchFilters';
 import ShoppingList from './ShoppingList';
 import { AppContext as Context } from '../../store/Provider';
 
-class ShoppingContainer extends Component {
+class Shopping extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired
   };
@@ -17,7 +17,10 @@ class ShoppingContainer extends Component {
           return (
             <div className="container-fluid">
               <div className="row">
-                <div className="col-md-2 d-none d-md-block">
+                <div
+                  className="col-md-2 d-none d-md-block"
+                  style={{ borderRight: '1px solid grey' }}
+                >
                   <SearchFilter />
                 </div>
                 <div className="col-12 col-md-10">
@@ -35,4 +38,4 @@ class ShoppingContainer extends Component {
   }
 }
 
-export default ShoppingContainer;
+export default Shopping;

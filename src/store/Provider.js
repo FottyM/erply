@@ -24,26 +24,30 @@ class AppProvider extends Component {
 
   filterItems = terms => {
     const items = flattenDeep(this.state.itemsChunks);
-    this.setState({
-      itemsChunks: chunk(filter(items, { terms }), 32)
-    });
+    const itemsCopy = items.slice();
+
+    console.log(itemsCopy);
+
+    // if(terms.store !== '') this.setState({ itemsChunks: chunk(filter([...items], terms ), 32) });
+
+    // if(terms.instock !== false ) this.setState({ itemsChunks: chunk(filter([...items], terms ), 32) });
+    // else this.setState({ itemsChunks: chunk([...items], 32) });
   };
 
   componentDidMount() {
-    try {
-      let basket = localStorage.getItem('basket');
-      basket = JSON.parse(basket);
-      this.setState({ basket });
-    } catch (error) {
-      console.error(error);
-    }
+    // try {
+    //   let basket = localStorage.getItem('basket');
+    //   basket = JSON.parse(basket);
+    //   this.setState({ basket });
+    // } catch (error) {
+    //   console.error(error);
+    // }
     this.setState({
       itemsChunks: chunk(data, 32)
     });
   }
 
   render() {
-    console.log(this.state.basket);
     return (
       <AppContext.Provider
         value={{

@@ -8477,7 +8477,6 @@ a.text-dark:focus {
   width: 0;
   z-index: 2;
   transition: width 700ms ease-out, opacity 1500ms ease;
-  opacity: 0.1;
 }
 .basket.show {
   width: 100%;
