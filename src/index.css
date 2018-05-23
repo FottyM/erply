@@ -8455,7 +8455,7 @@ a.text-dark:focus {
   display: flex;
   flex-direction: column;
   justify-content: end;
-  align-items: flex-start;
+  align-items: center;
   overflow: hidden;
   justify-self: end;
 }
@@ -8476,7 +8476,7 @@ a.text-dark:focus {
   overflow-y: scroll;
   width: 0;
   z-index: 2;
-  transition: width 700ms ease-out, opacity 1500ms ease;
+  transition: width 350ms ease-out;
 }
 .basket.show {
   width: 100%;

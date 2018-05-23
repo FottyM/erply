@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import chunk from 'lodash/chunk';
 import flattenDeep from 'lodash/flattenDeep';
-import filter from 'lodash/filter';
-import data from '../data.json';
+import isNil from 'lodash/isNil';
+import axios from 'axios/index';
 
 export const AppContext = React.createContext();
+const Provider = AppContext.Provider;
+export const Consumer = AppContext.Consumer;
 
 class AppProvider extends Component {
   state = {
@@ -16,17 +18,43 @@ class AppProvider extends Component {
     this.setState({
       basket: [...this.state.basket, item]
     });
+    this.updateLocalStorage();
   };
 
-  removeFromBasket = item => {
-    // this.setState()
+  removeItemFromBasket = item => {
+    // this.setState({})
+    this.updateLocalStorage();
+  };
+
+  clearBasket = () => {
+    this.setState({ basket: [] });
+    this.updateLocalStorage();
+  };
+
+  updateLocalStorage = () => {
+    localStorage.setItem('basket', JSON.stringify(this.state.basket));
+    console.log(this.state.basket);
+  };
+
+  loadDataFromServer = () => {
+    axios
+      .request({
+        method: 'GET',
+        url: 'https://erply-challenge.herokuapp.com/list',
+        params: {
+          AUTH: 'fae7b9f6-6363-45a1-a9c9-3def2dae206d'
+        }
+      })
+      .then(res => {
+        const itemsChunks = chunk(res.data, 32);
+        this.setState({ itemsChunks });
+      })
+      .catch(console.log);
   };
 
   filterItems = terms => {
     const items = flattenDeep(this.state.itemsChunks);
     const itemsCopy = items.slice();
-
-    console.log(itemsCopy);
 
     // if(terms.store !== '') this.setState({ itemsChunks: chunk(filter([...items], terms ), 32) });
 
@@ -35,30 +63,31 @@ class AppProvider extends Component {
   };
 
   componentDidMount() {
-    // try {
-    //   let basket = localStorage.getItem('basket');
-    //   basket = JSON.parse(basket);
-    //   this.setState({ basket });
-    // } catch (error) {
-    //   console.error(error);
-    // }
-    this.setState({
-      itemsChunks: chunk(data, 32)
-    });
+    this.loadDataFromServer();
+
+    try {
+      const basket = JSON.parse(localStorage.getItem('basket'));
+      if (!isNil(basket)) {
+        this.setState({ basket: basket });
+      }
+    } catch (e) {
+      throw new Error(e);
+    }
   }
 
   render() {
     return (
-      <AppContext.Provider
+      <Provider
         value={{
           ...this.state,
           addToBasket: this.addToBasket,
           removeFromBasket: this.removeFromBasket,
-          filterItems: this.filterItems
+          filterItems: this.filterItems,
+          clearBasket: this.clearBasket
         }}
       >
         {this.props.children}
-      </AppContext.Provider>
+      </Provider>
     );
   }
 }

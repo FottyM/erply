@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import { AppContext } from '../../store/Provider';
-const Consumer = AppContext.Consumer;
+import { Consumer } from '../../store/Provider';
 
 class SearchFilter extends Component {
-  countryRef = React.createRef();
-
   handleChange = (event, { filterItems }) => {
     console.log({ [event.target.name]: event.target.value });
     filterItems(null);
-
     console.log(event.target.value);
   };
 

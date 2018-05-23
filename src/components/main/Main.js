@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import chunk from 'lodash/chunk';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import isEmpty from 'lodash/isEmpty';
 import Shopping from '../shopping/';
 import ShoppingItemDetails from '../shopping/ShoppingItemDetails';
 import Basket from '../basket/Basket';
-import { AppContext as Context } from '../../store/Provider';
+import { Consumer } from '../../store/Provider';
 
 class Main extends Component {
   state = {
-    itemsChunks: [],
     isBasketOpened: false
   };
 
@@ -20,30 +17,10 @@ class Main extends Component {
     });
   };
 
-  componentDidMount() {
-    this.loadDataFromServer();
-  }
-
-  loadDataFromServer = () => {
-    axios
-      .request({
-        method: 'GET',
-        url: 'https://erply-challenge.herokuapp.com/list',
-        params: {
-          AUTH: 'fae7b9f6-6363-45a1-a9c9-3def2dae206d'
-        }
-      })
-      .then(res => {
-        const itemsChunks = chunk(res.data, 32);
-        this.setState({ itemsChunks });
-      })
-      .catch(console.log);
-  };
-
   render() {
     return (
       <main>
-        <Context.Consumer>
+        <Consumer>
           {({ basket }) => (
             <button
               className="btn btn-warning"
@@ -62,7 +39,7 @@ class Main extends Component {
               </span>
             </button>
           )}
-        </Context.Consumer>
+        </Consumer>
         <Switch>
           <Route
             exact
@@ -90,10 +67,15 @@ class Main extends Component {
             )}
           />
         </Switch>
-        <Basket
-          isOpened={this.state.isBasketOpened}
-          toggle={this.toggleBasket}
-        />
+        <Consumer>
+          {({ clearBasket }) => (
+            <Basket
+              isOpened={this.state.isBasketOpened}
+              toggle={this.toggleBasket}
+              emptyBasket={clearBasket}
+            />
+          )}
+        </Consumer>
       </main>
     );
   }

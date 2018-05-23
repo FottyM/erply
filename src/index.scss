@@ -13,7 +13,7 @@ $theme-colors: ( "primary": #009688, "danger": #f44336);
     display: flex;
     flex-direction: column;
     justify-content: end;
-    align-items: flex-start;
+    align-items: center;
     overflow: hidden;
     justify-self: end;
   }
@@ -37,7 +37,7 @@ $theme-colors: ( "primary": #009688, "danger": #f44336);
   overflow-y: scroll;
   width: 0;
   z-index: 2;
-  transition: width 700ms ease-out, opacity 1500ms ease;
+  transition: width 350ms ease-out;
   &.show{
     width: 100%;
     @include media-breakpoint-up(lg) {

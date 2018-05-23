@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { AppContext as Context } from '../../store/Provider';
+import { Consumer } from '../../store/Provider';
 import find from 'lodash/find';
 import isNil from 'lodash/isNil';
 import flattenDeep from 'lodash/flattenDeep';
@@ -122,7 +122,7 @@ class ShoppingItemDetails extends Component {
   render() {
     const { match } = this.props;
     return (
-      <Context.Consumer>
+      <Consumer>
         {context => {
           return (
             <div className="container">
@@ -130,7 +130,7 @@ class ShoppingItemDetails extends Component {
             </div>
           );
         }}
-      </Context.Consumer>
+      </Consumer>
     );
   }
 }
