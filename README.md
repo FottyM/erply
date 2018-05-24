@@ -1,3 +1,4 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/39288d5c10715fcecba2/maintainability)](https://codeclimate.com/github/FottyM/erply/maintainability)
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

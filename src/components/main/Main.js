@@ -7,23 +7,13 @@ import Basket from '../basket/Basket';
 import { Consumer } from '../../store/Provider';
 
 class Main extends Component {
-  state = {
-    isBasketOpened: false
-  };
-
-  toggleBasket = () => {
-    this.setState({
-      isBasketOpened: false
-    });
-  };
-
   render() {
     return (
       <main>
         <Consumer>
-          {({ basket }) => (
+          {({ basket, toggleBasket }) => (
             <button
-              className="btn btn-warning"
+              className="btn btn-warning text-white"
               style={{
                 position: 'fixed',
                 right: 10,
@@ -31,7 +21,7 @@ class Main extends Component {
                 zIndex: 1,
                 borderRadius: 600
               }}
-              onClick={() => this.setState({ isBasketOpened: true })}
+              onClick={toggleBasket}
             >
               Basket{' '}
               <span className="badge badge-danger">
@@ -68,10 +58,10 @@ class Main extends Component {
           />
         </Switch>
         <Consumer>
-          {({ clearBasket }) => (
+          {({ clearBasket, isBasketOpened, toggleBasket }) => (
             <Basket
-              isOpened={this.state.isBasketOpened}
-              toggle={this.toggleBasket}
+              isOpened={isBasketOpened}
+              toggle={toggleBasket}
               emptyBasket={clearBasket}
             />
           )}

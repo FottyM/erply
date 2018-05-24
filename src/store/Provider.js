@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import chunk from 'lodash/chunk';
 import flattenDeep from 'lodash/flattenDeep';
-import isNil from 'lodash/isNil';
+import isUndefined from 'lodash/isUndefined';
 import axios from 'axios/index';
 
 export const AppContext = React.createContext();
@@ -11,29 +11,33 @@ export const Consumer = AppContext.Consumer;
 class AppProvider extends Component {
   state = {
     itemsChunks: [],
-    basket: []
+    basket: [],
+    isBasketOpened: false
   };
 
   addToBasket = item => {
     this.setState({
       basket: [...this.state.basket, item]
     });
-    this.updateLocalStorage();
+    const { basket } = this.state;
+    console.log(basket, 'calculer');
+    localStorage.setItem('basket', JSON.stringify(this.state.basket));
   };
 
   removeItemFromBasket = item => {
     // this.setState({})
-    this.updateLocalStorage();
   };
 
   clearBasket = () => {
     this.setState({ basket: [] });
-    this.updateLocalStorage();
+    const { basket } = this.state;
+    localStorage.setItem('basket', JSON.stringify([]));
   };
 
-  updateLocalStorage = () => {
-    localStorage.setItem('basket', JSON.stringify(this.state.basket));
-    console.log(this.state.basket);
+  toggleBasket = () => {
+    this.setState({
+      isBasketOpened: !this.state.isBasketOpened
+    });
   };
 
   loadDataFromServer = () => {
@@ -67,23 +71,28 @@ class AppProvider extends Component {
 
     try {
       const basket = JSON.parse(localStorage.getItem('basket'));
-      if (!isNil(basket)) {
-        this.setState({ basket: basket });
+      if (!isUndefined(basket)) {
+        this.setState({ basket });
+      } else {
+        this.setState({ basket: [] });
       }
     } catch (e) {
-      throw new Error(e);
+      console.error(e);
     }
   }
 
   render() {
+    const state = { ...this.state };
     return (
       <Provider
         value={{
-          ...this.state,
+          ...state,
           addToBasket: this.addToBasket,
           removeFromBasket: this.removeFromBasket,
           filterItems: this.filterItems,
-          clearBasket: this.clearBasket
+          clearBasket: this.clearBasket,
+          toggleBasket: this.toggleBasket,
+          isBasketOpened: this.state.isBasketOpened
         }}
       >
         {this.props.children}

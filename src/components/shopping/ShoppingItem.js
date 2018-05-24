@@ -45,13 +45,15 @@ const ShoppingItem = props => {
             </div>
           </Link>
           <Consumer>
-            {({ addToBasket }) => {
+            {({ addToBasket, toggleBasket }) => {
               return (
                 <button
                   className="btn btn-block btn-success text-light"
                   disabled={!props.instock}
                   style={{ cursor: !props.instock ? 'not-allowed' : '' }}
-                  onClick={() => addToBasket(props)}
+                  onClick={() => {
+                    addToBasket(props);
+                  }}
                 >
                   Add to basket
                 </button>

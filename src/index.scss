@@ -1,4 +1,8 @@
-$theme-colors: ( "primary": #009688, "danger": #f44336);
+$theme-colors: (
+        "primary": #009688,
+        "danger": #f44336,
+        "darkcyan": #005656
+);
 @import 'node_modules/bootstrap/scss/bootstrap';
 .shopping-item-card {
   height: 450px;
@@ -27,22 +31,19 @@ $theme-colors: ( "primary": #009688, "danger": #f44336);
   }
 }
 
-
-.basket{
+.basket {
   position: fixed;
   height: 100%;
   top: 0;
-  right: 0;
+  right: -400px;
   overflow-x: hidden;
   overflow-y: scroll;
-  width: 0;
   z-index: 2;
-  transition: width 350ms ease-out;
-  &.show{
-    width: 100%;
-    @include media-breakpoint-up(lg) {
+  transition: right 450ms ease-out;
+  @include media-breakpoint-up(lg) {
     width: 400px;
-    }
-    opacity: 1;
+  }
+  &.show {
+    right: 0;
   }
 }
