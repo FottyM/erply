@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import isEmpty from 'lodash/isEmpty';
 import isNil from 'lodash/isNil';
 import ShoppingItem from './ShoppingItem';
-import Paginator from '../Paginator/Paginator';
+import Paginator from '../paginator/Paginator';
 
 class ShoppingList extends Component {
   state = {

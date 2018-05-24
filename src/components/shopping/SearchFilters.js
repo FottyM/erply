@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import { Consumer } from '../../store/Provider';
 
-class SearchFilter extends Component {
-  handleChange = (event, { filterItems }) => {
-    console.log({ [event.target.name]: event.target.value });
-    filterItems(null);
-    console.log(event.target.value);
+class FilterSearch extends Component {
+  storeRef = React.createRef();
+  instockRef = React.createRef();
+
+  handleChange = ({ filterItems }) => {
+    const instock =
+      this.instockRef.current.value.length > 0
+        ? JSON.parse(this.instockRef.current.value)
+        : this.instockRef.current.value;
+    const store = this.storeRef.current.value;
+    filterItems({ instock, store });
   };
 
   render() {
@@ -14,11 +20,16 @@ class SearchFilter extends Component {
         {context => (
           <div className="position-fixed">
             <div className="py-5">
-              <form onChange={event => this.handleChange(event, context)}>
+              <form onChange={() => this.handleChange(context)}>
                 <div className="form-group py-2">
                   <label htmlFor="store">Select Store</label>
-                  <select className="form-control" id="store" name="store">
-                    <option value="all">All</option>
+                  <select
+                    className="form-control"
+                    id="store"
+                    name="store"
+                    ref={this.storeRef}
+                  >
+                    <option value={''}>All</option>
                     <option value="Estonia">Estonia</option>
                     <option value="Finland">Finland</option>
                   </select>
@@ -31,10 +42,10 @@ class SearchFilter extends Component {
                     name="instock"
                     id="availability"
                     className="form-control"
+                    ref={this.instockRef}
                   >
-                    <option value={null}>All</option>
+                    <option value={''}>All</option>
                     <option value={true}>Available</option>
-                    <option value={false}>Not Available</option>
                   </select>
                 </div>
               </form>
@@ -46,4 +57,4 @@ class SearchFilter extends Component {
   }
 }
 
-export default SearchFilter;
+export default FilterSearch;

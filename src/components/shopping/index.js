@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SearchFilter from './SearchFilters';
+import FilterSearch from './SearchFilters';
 import ShoppingList from './ShoppingList';
 import { Consumer } from '../../store/Provider';
 
@@ -16,7 +16,7 @@ const Shopping = ({ match }) => {
                 className="col-md-2 d-none d-md-block"
                 style={{ borderRight: '1px solid grey' }}
               >
-                <SearchFilter />
+                <FilterSearch />
               </div>
               <div className="col-12 col-md-10">
                 <h2 className="text-center text-primary py-3">

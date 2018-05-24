@@ -8,7 +8,7 @@ import map from 'lodash/map';
 import { Consumer } from '../../store/Provider';
 
 class Basket extends React.Component {
-  renderBasketItems = (basket = [], total) => {
+  renderBasketItems = ({ basket, removeFromBasket }, total) => {
     const groupedItems = groupBy(basket, 'id');
 
     if (!isEmpty(basket)) basket.map(item => (total += item.price));
@@ -44,6 +44,12 @@ class Basket extends React.Component {
                             code: 'EUR'
                           })}
                         </h6>
+                        <button
+                          className=" btn btn-danger float-right"
+                          onClick={() => removeFromBasket(items[0].id)}
+                        >
+                          Remove
+                        </button>
                       </div>
                     </div>
                   </li>
@@ -72,7 +78,7 @@ class Basket extends React.Component {
     const { isOpened } = this.props;
     return (
       <Consumer>
-        {({ basket }) => {
+        {context => {
           let total = 0;
           return (
             <div
@@ -94,7 +100,7 @@ class Basket extends React.Component {
                   </div>
                 </div>
                 <div className="row">
-                  {this.renderBasketItems(basket, total)}
+                  {this.renderBasketItems(context, total)}
                 </div>
                 <div className="row">
                   <div className="col-12 align-bottom">
