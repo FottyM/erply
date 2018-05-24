@@ -92,8 +92,6 @@ class AppProvider extends Component {
         });
       }
     });
-
-    console.log({ instock, store });
   };
 
   componentDidMount() {

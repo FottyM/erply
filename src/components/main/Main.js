@@ -13,7 +13,7 @@ class Main extends Component {
         <Consumer>
           {({ basket, toggleBasket }) => (
             <button
-              className="btn btn-warning text-white"
+              className="btn btn-darkcyan text-white"
               style={{
                 position: 'fixed',
                 right: 10,

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import FilterSearch from './SearchFilters';
+import FilterSearch from '../seach-filter/SearchFilters';
 import ShoppingList from './ShoppingList';
 import { Consumer } from '../../store/Provider';
 

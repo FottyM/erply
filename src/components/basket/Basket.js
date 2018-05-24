@@ -89,12 +89,15 @@ class Basket extends React.Component {
               <div className="container">
                 <div className="row">
                   <div className="col-12">
-                    <button
-                      className="btn btn-danger rounded rounded-circle"
+                    <span
+                      className="text-white font-weight-bold"
+                      style={{
+                        cursor: 'pointer'
+                      }}
                       onClick={this.props.toggle}
                     >
-                      &#9587;
-                    </button>
+                      &#x2573;
+                    </span>
                     <h4 className="text-center">The Basket</h4>
                     <hr className="text-white" />
                   </div>

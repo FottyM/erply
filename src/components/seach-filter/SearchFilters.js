@@ -21,7 +21,7 @@ class FilterSearch extends Component {
           <div className="position-fixed">
             <div className="py-5">
               <form onChange={() => this.handleChange(context)}>
-                <div className="form-group py-2">
+                <div className="form-group py-2 w-100">
                   <label htmlFor="store">Select Store</label>
                   <select
                     className="form-control"

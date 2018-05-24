@@ -32,15 +32,16 @@ const ShoppingItem = props => {
                   })}
                 </h5>
               </span>
-              <h5 className="text-danger">
+              <h5 className="text-dark font-weight-bold">
+                Price:
                 {currencyFormatter.format(props.price, {
                   code: props.currency
                 })}
               </h5>
-              <p className="text-dark">
+              <p className={props.instock ? 'text-dark' : 'text-danger'}>
                 {' '}
                 {props.instock ? 'In stock' : 'Out of stock'}{' '}
-                <span className="text-dark">({props.store})</span>{' '}
+                <span>({props.store})</span>{' '}
               </p>
             </div>
           </Link>
