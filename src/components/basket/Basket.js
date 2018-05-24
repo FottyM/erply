@@ -20,7 +20,10 @@ class Basket extends React.Component {
             <ul className="pt-3 list-group">
               {map(groupedItems, (items, index) => {
                 return (
-                  <li key={`${index}`} className="list-group-item bg-darkcyan">
+                  <li
+                    key={`${index}`}
+                    className="list-group-item bg-darkcyan animated bounceIn"
+                  >
                     <div className="media">
                       <img
                         className="mr-3 img-thumbnail"
