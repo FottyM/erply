@@ -17,29 +17,27 @@ class AppProvider extends Component {
   };
 
   addToBasket = item => {
-    this.setState({
-      basket: [...this.state.basket, item]
+    this.setState(prevState => {
+      const { basket } = prevState;
+      localStorage.setItem('basket', JSON.stringify([...basket, item]));
+      return { basket: [...basket, item] };
     });
-    this.updateLocalStorage();
   };
 
-  removeFromBasket = async itemId => {
-    const { basket } = this.state;
-    this.setState({
-      basket: [...pullAllBy(basket, [{ id: itemId }], 'id')]
+  removeFromBasket = itemId => {
+    this.setState(prevState => {
+      const { basket } = prevState;
+      const newBasket = [...pullAllBy([...basket], [{ id: itemId }], 'id')];
+      localStorage.setItem('basket', JSON.stringify(newBasket));
+      return { basket: newBasket };
     });
-    this.updateLocalStorage();
   };
 
   clearBasket = () => {
-    this.setState({ basket: [] });
-    this.updateLocalStorage();
-  };
-
-  updateLocalStorage = async () => {
-    console.log(this.state.basket, 'before');
-    await localStorage.setItem('basket', JSON.stringify(this.state.basket));
-    console.log(this.state.basket, 'after');
+    this.setState(prevState => {
+      localStorage.setItem('basket', JSON.stringify([]));
+      return { ...prevState, basket: [] };
+    });
   };
 
   toggleBasket = () => {
@@ -50,16 +48,22 @@ class AppProvider extends Component {
 
   loadDataFromServer = async function() {
     try {
-      return await axios.request({
-        method: 'GET',
-        url: 'https://erply-challenge.herokuapp.com/list',
-        params: {
-          AUTH: 'fae7b9f6-6363-45a1-a9c9-3def2dae206d'
-        }
-      });
+      return await axios.get('http://localhost:3001/api');
     } catch (e) {
       throw new Error(e);
     }
+    // try {
+    //   return  data
+    //   // return await axios.request({
+    //   //   method: 'GET',
+    //   //   url: 'https://erply-challenge.herokuapp.com/list',
+    //   //   params: {
+    //   //     AUTH: 'fae7b9f6-6363-45a1-a9c9-3def2dae206d'
+    //   //   }
+    //   // });
+    // } catch (e) {
+    //   throw new Error(e);
+    // }
   };
 
   filterItems = ({ instock, store }) => {

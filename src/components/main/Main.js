@@ -13,13 +13,12 @@ class Main extends Component {
         <Consumer>
           {({ basket, toggleBasket }) => (
             <button
-              className="btn btn-darkcyan text-white"
+              className="btn btn-success text-white"
               style={{
                 position: 'fixed',
                 right: 10,
                 top: 80,
-                zIndex: 1,
-                borderRadius: 600
+                zIndex: 1
               }}
               onClick={toggleBasket}
             >
