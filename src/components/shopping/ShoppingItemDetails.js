@@ -23,7 +23,7 @@ class ShoppingItemDetails extends Component {
     this.setState({ quantity: number, itemCollection: temp, item: item });
   };
 
-  getItem = (itemsChunks = [], id, { addToBasket }) => {
+  getItemById = (itemsChunks = [], id, { addToBasket }) => {
     itemsChunks = flattenDeep(itemsChunks);
     const item = find(itemsChunks, { id: parseInt(id) });
 
@@ -131,7 +131,11 @@ class ShoppingItemDetails extends Component {
         {context => {
           return (
             <div className="container">
-              {this.getItem(context.itemsChunks, match.params.item, context)}
+              {this.getItemById(
+                context.itemsChunks,
+                match.params.item,
+                context
+              )}
             </div>
           );
         }}
