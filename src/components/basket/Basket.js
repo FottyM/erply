@@ -60,7 +60,9 @@ class Basket extends React.Component {
               })}
             </ul>
           ) : (
-            <h4 className="text-danger text-center">Nothing here</h4>
+            <h4 className="text-danger text-center animated jackInTheBox ">
+              Nothing here
+            </h4>
           )}
         </div>
         <div className="col py-2">

@@ -16,11 +16,13 @@ class AppProvider extends Component {
     isBasketOpened: false
   };
 
-  addToBasket = item => {
+  addToBasket = items => {
     this.setState(prevState => {
       const { basket } = prevState;
-      localStorage.setItem('basket', JSON.stringify([...basket, item]));
-      return { basket: [...basket, item] };
+      if (items.length > 0) {
+        localStorage.setItem('basket', JSON.stringify([...basket, ...items]));
+        return { basket: [...basket, ...items] };
+      }
     });
   };
 

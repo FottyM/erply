@@ -53,7 +53,8 @@ const ShoppingItem = props => {
                   disabled={!props.instock}
                   style={{ cursor: !props.instock ? 'not-allowed' : '' }}
                   onClick={() => {
-                    addToBasket(props);
+                    console.log([props]);
+                    addToBasket([props]);
                   }}
                 >
                   Add to basket
