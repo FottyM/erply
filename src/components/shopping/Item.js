@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import { Consumer } from '../../store/Provider';
+import { Consumer } from '../../provider/Provider';
 import find from 'lodash/find';
 import isNil from 'lodash/isNil';
 import flattenDeep from 'lodash/flattenDeep';
 import currencyFormatter from 'currency-formatter';
 
-class ShoppingItemDetails extends Component {
+class Item extends Component {
   state = {
     item: {},
     itemCollection: [],
@@ -144,4 +144,4 @@ class ShoppingItemDetails extends Component {
   }
 }
 
-export default ShoppingItemDetails;
+export default Item;

@@ -3,7 +3,7 @@ import NavBar from './components/main/NavBar';
 import Main from './components/main/Main';
 import Footer from './components/main/Footer';
 import { BrowserRouter as Router } from 'react-router-dom';
-import AppProvider from './store/Provider';
+import AppProvider from './provider/Provider';
 
 class App extends Component {
   render() {

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import isEmpty from 'lodash/isEmpty';
 import Shopping from '../shopping/';
-import ShoppingItemDetails from '../shopping/ShoppingItemDetails';
+import Item from '../shopping/Item';
 import Basket from '../basket/Basket';
-import { Consumer } from '../../store/Provider';
+import { Consumer } from '../../provider/Provider';
 
 class Main extends Component {
   render() {
@@ -13,7 +13,7 @@ class Main extends Component {
         <Consumer>
           {({ basket, toggleBasket }) => (
             <button
-              className="btn btn-success text-white"
+              className="btn btn-outline-mauve"
               style={{
                 position: 'fixed',
                 right: 10,
@@ -37,7 +37,7 @@ class Main extends Component {
               return <Redirect to="/store/items" />;
             }}
           />
-          <Route path="/store/items/:item" component={ShoppingItemDetails} />
+          <Route path="/store/items/:item" component={Item} />
           <Route path="/store/items" component={Shopping} />
           <Route
             path="/about"

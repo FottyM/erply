@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import isEmpty from 'lodash/isEmpty';
 import isNil from 'lodash/isNil';
-import ShoppingItem from './ShoppingItem';
+import ListItem from './ListItem';
 import Paginator from '../paginator/Paginator';
 
-class ShoppingList extends Component {
+class List extends Component {
   state = {
     current: 0
   };
@@ -21,11 +21,13 @@ class ShoppingList extends Component {
     return (
       <div className="row">
         {!isEmpty(items) ? (
-          items.map(item => (
-            <ShoppingItem {...item} match={match} key={item.id} />
-          ))
+          items.map(item => <ListItem {...item} match={match} key={item.id} />)
         ) : (
-          <h2 className="text-danger text-center">Loading...</h2>
+          <div className="col-12">
+            <h1 className="text-danger text-center animated pulse infinite">
+              Loading...
+            </h1>
+          </div>
         )}
 
         <Paginator data={itemsChunks} changeIndex={this.updateDisplay} />
@@ -34,4 +36,4 @@ class ShoppingList extends Component {
   }
 }
 
-export default ShoppingList;
+export default List;

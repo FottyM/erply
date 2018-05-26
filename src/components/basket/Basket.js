@@ -5,7 +5,7 @@ import pluralize from 'pluralize';
 import isEmpty from 'lodash/isEmpty';
 import groupBy from 'lodash/groupBy';
 import map from 'lodash/map';
-import { Consumer } from '../../store/Provider';
+import { Consumer } from '../../provider/Provider';
 
 class Basket extends React.Component {
   renderBasketItems = ({ basket, removeFromBasket }, total) => {

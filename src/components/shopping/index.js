@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import FilterSearch from '../seach-filter/SearchFilters';
-import ShoppingList from './ShoppingList';
-import { Consumer } from '../../store/Provider';
+import List from './List';
+import { Consumer } from '../../provider/Provider';
 
 const Shopping = ({ match }) => {
   return (
@@ -22,7 +22,7 @@ const Shopping = ({ match }) => {
                 <h2 className="text-center text-primary py-3">
                   Shopping Items
                 </h2>
-                <ShoppingList match={match} {...context} />
+                <List match={match} {...context} />
               </div>
             </div>
           </div>

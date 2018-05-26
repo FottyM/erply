@@ -3,9 +3,9 @@ import LazyLoad from 'react-lazyload';
 import currencyFormatter from 'currency-formatter';
 import { Link } from 'react-router-dom';
 import truncate from 'lodash/truncate';
-import { Consumer } from '../../store/Provider';
+import { Consumer } from '../../provider/Provider';
 
-const ShoppingItem = props => {
+const ListItem = props => {
   return (
     <div className="col-12 col-sm-6 col-md-6 col-lg-3 py-3">
       <LazyLoad height={200}>
@@ -67,4 +67,4 @@ const ShoppingItem = props => {
     </div>
   );
 };
-export default ShoppingItem;
+export default ListItem;
