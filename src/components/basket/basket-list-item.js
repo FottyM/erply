@@ -8,7 +8,6 @@ class BasketItem extends Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    console.log(props, state);
     return {
       tempQTY: props.quantity
     };

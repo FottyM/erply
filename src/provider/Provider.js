@@ -66,7 +66,7 @@ class AppProvider extends Component {
 
   loadDataFromServer = async function() {
     try {
-      return await axios.get('http://localhost:3001/api');
+      return await axios.get('https://a5f461fb.ngrok.io/api');
     } catch (e) {
       throw new Error(e);
     }

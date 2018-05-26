@@ -39,12 +39,24 @@ $theme-colors: (
   right: -800px;
   overflow-x: hidden;
   overflow-y: scroll;
-  z-index: 2;
+  z-index: 4;
   transition: right 450ms ease-out;
   @include media-breakpoint-up(lg) {
     width: 400px;
   }
   &.show {
     right: 0;
+  }
+}
+
+.search-filters {
+  transition: left 450ms ease-in-out;
+  @include media-breakpoint-down(md) {
+    left: -126px;
+    width: 112px;
+    z-index: 3;
+  }
+  &.show {
+    left: 0;
   }
 }

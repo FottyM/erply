@@ -8760,7 +8760,7 @@ a.text-mauve:focus {
   right: -800px;
   overflow-x: hidden;
   overflow-y: scroll;
-  z-index: 2;
+  z-index: 4;
   transition: right 450ms ease-out;
 }
 @media (min-width: 992px) {
@@ -8770,4 +8770,18 @@ a.text-mauve:focus {
 }
 .basket.show {
   right: 0;
+}
+
+.search-filters {
+  transition: left 450ms ease-in-out;
+}
+@media (max-width: 991.98px) {
+  .search-filters {
+    left: -126px;
+    width: 112px;
+    z-index: 3;
+  }
+}
+.search-filters.show {
+  left: 0;
 }
