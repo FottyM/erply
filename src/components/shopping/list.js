@@ -3,7 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 import isNil from 'lodash/isNil';
 
 import ListItem from './list-Item';
-import Paginator from '../paginator/Paginator';
+import Paginator from '../paginator/paginator';
 
 class List extends Component {
   state = {

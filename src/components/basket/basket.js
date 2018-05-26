@@ -11,7 +11,9 @@ class Basket extends Component {
   renderBasketItems = ({ basket, removeFromBasket, updateBasket }, total) => {
     const groupedItems = groupBy(basket, 'id');
 
-    if (!isEmpty(basket)) basket.map(item => (total += item.price));
+    if (!isEmpty(basket)) {
+      basket.map(item => (total += item.price));
+    }
 
     return (
       <Fragment>

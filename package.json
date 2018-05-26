@@ -19,6 +19,7 @@
     "pluralize": "^7.0.0",
     "popper.js": "^1.14.3",
     "prettier": "^1.12.1",
+    "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-click-outside": "^3.0.1",
     "react-dom": "^16.3.2",

@@ -1,8 +1,25 @@
-import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import currencyFormatter from 'currency-formatter';
 
 class BasketItem extends Component {
+  state = {
+    tempQTY: 0
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    console.log(props, state);
+    return {
+      tempQTY: props.quantity
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      tempQTY: this.props.quantity
+    });
+  }
+
   render() {
     const {
       image,
@@ -41,21 +58,29 @@ class BasketItem extends Component {
             <input
               type="number"
               className="form-control"
-              value={quantity}
+              value={this.state.tempQTY}
               defaultValue={1}
               onChange={e => {
                 const qty = parseInt(e.target.value);
-                const update = () => updateBasket(qty, id);
-                setTimeout(update, 1500);
+                this.setState({ tempQTY: qty });
               }}
             />
           </div>
-          <div className="col-8">
+          <div className="col-4">
+            <button
+              className="btn btn-primary"
+              onClick={() => updateBasket(this.state.tempQTY, id)}
+            >
+              Update
+            </button>
+          </div>
+
+          <div className="col-4">
             <button
               className=" btn btn-outline-danger"
               onClick={() => removeFromBasket(id)}
             >
-              Remove All
+              Delete
             </button>
           </div>
         </div>

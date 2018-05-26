@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import FilterSearch from '../seach-filter/SearchFilters';
+import FilterSearch from '../seach-filter/search-filters';
 import List from './list';
 import { Consumer } from '../../provider/Provider';
 
