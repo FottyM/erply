@@ -52,10 +52,7 @@ const ListItem = props => {
                   className="btn btn-block btn-success text-light"
                   disabled={!props.instock}
                   style={{ cursor: !props.instock ? 'not-allowed' : '' }}
-                  onClick={() => {
-                    console.log([props]);
-                    addToBasket([props]);
-                  }}
+                  onClick={() => addToBasket([props])}
                 >
                   Add to basket
                 </button>

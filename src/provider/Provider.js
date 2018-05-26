@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import chunk from 'lodash/chunk';
-import isUndefined from 'lodash/isUndefined';
+import isNil from 'lodash/isNil';
 import filter from 'lodash/filter';
 import pullAllBy from 'lodash/pullAllBy';
 import axios from 'axios/index';
@@ -109,13 +109,14 @@ class AppProvider extends Component {
 
     try {
       const basket = JSON.parse(localStorage.getItem('basket'));
-      if (!isUndefined(basket)) {
+      if (!isNil(basket)) {
         this.setState({ basket });
       } else {
         this.setState({ basket: [] });
+        localStorage.setItem('basket', '[]');
       }
     } catch (e) {
-      console.error(e);
+      throw new Error(e);
     }
   }
 

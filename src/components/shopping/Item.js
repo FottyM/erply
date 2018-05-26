@@ -71,7 +71,10 @@ class Item extends Component {
                 {item.instock ? (
                   <span className="text-success"> In stock </span>
                 ) : (
-                  <span className="text-danger"> Out of stock </span>
+                  <span className="text-danger animated shake">
+                    {' '}
+                    Out of stock{' '}
+                  </span>
                 )}
               </li>
             </ul>
@@ -110,16 +113,20 @@ class Item extends Component {
 
   renderErrorMessage = () => {
     return (
-      <div className="text-center">
-        <h3 className="text-danger animated bounce infinite">
-          {' '}
-          Please try go back
-        </h3>
-        <img
-          src="http://placekitten.com/g/400/600"
-          alt="oopsie"
-          className="img-fluid"
-        />
+      <div className="row">
+        <div className="col-12">
+          <div className="text-center py-5">
+            <h3 className="text-danger animated bounce infinite">
+              {' '}
+              Please try go back
+            </h3>
+            <img
+              src="http://placekitten.com/g/400/600"
+              alt="oopsie"
+              className="img-fluid"
+            />
+          </div>
+        </div>
       </div>
     );
   };
