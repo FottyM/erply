@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import isEmpty from 'lodash/isEmpty';
 import isNil from 'lodash/isNil';
-import ListItem from './ListItem';
+
+import ListItem from './list-Item';
 import Paginator from '../paginator/Paginator';
 
 class List extends Component {

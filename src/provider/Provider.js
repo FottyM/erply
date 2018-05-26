@@ -3,6 +3,7 @@ import chunk from 'lodash/chunk';
 import isNil from 'lodash/isNil';
 import filter from 'lodash/filter';
 import pullAllBy from 'lodash/pullAllBy';
+import find from 'lodash/find';
 import axios from 'axios/index';
 
 export const AppContext = React.createContext();
@@ -39,6 +40,21 @@ class AppProvider extends Component {
     this.setState(prevState => {
       localStorage.setItem('basket', JSON.stringify([]));
       return { ...prevState, basket: [] };
+    });
+  };
+
+  updateBasket = (qty, itemId) => {
+    this.setState(prevState => {
+      const { basket } = prevState;
+      const temp = find(basket, { id: itemId });
+      let temArray = [];
+      for (let i = 0; i < qty; i++) {
+        temArray.push(temp);
+      }
+      let newBasket = [...pullAllBy([...basket], [{ id: itemId }], 'id')];
+      newBasket = [...newBasket, ...temArray];
+      localStorage.setItem('basket', JSON.stringify(newBasket));
+      return { basket: newBasket };
     });
   };
 
@@ -129,7 +145,8 @@ class AppProvider extends Component {
           removeFromBasket: this.removeFromBasket,
           filterItems: this.filterItems,
           clearBasket: this.clearBasket,
-          toggleBasket: this.toggleBasket
+          toggleBasket: this.toggleBasket,
+          updateBasket: this.updateBasket
         }}
       >
         {this.props.children}

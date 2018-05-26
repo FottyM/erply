@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import FilterSearch from '../seach-filter/SearchFilters';
-import List from './List';
+import List from './list';
 import { Consumer } from '../../provider/Provider';
 
 const Shopping = ({ match }) => {

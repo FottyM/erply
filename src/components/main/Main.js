@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import isEmpty from 'lodash/isEmpty';
 import Shopping from '../shopping/';
 import Item from '../shopping/Item';
-import Basket from '../basket/Basket';
+import Basket from '../basket/basket';
 import { Consumer } from '../../provider/Provider';
 
 class Main extends Component {

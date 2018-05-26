@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import { Consumer } from '../../provider/Provider';
 import find from 'lodash/find';
 import isNil from 'lodash/isNil';
 import flattenDeep from 'lodash/flattenDeep';
 import currencyFormatter from 'currency-formatter';
+
+import { Consumer } from '../../provider/Provider';
 
 class Item extends Component {
   state = {
