@@ -58,7 +58,6 @@ class BasketItem extends Component {
               type="number"
               className="form-control"
               value={this.state.tempQTY}
-              defaultValue={1}
               onChange={e => {
                 const qty = parseInt(e.target.value);
                 this.setState({ tempQTY: qty });
