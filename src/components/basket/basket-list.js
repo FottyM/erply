@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import map from 'lodash/map';
 import isEmpty from 'lodash/isEmpty';
 import groupBy from 'lodash/groupBy';

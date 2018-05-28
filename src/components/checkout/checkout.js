@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import BasketList from '../basket/basket-list';
 import BasketSubTotal from '../basket/basket-subtotal';
@@ -29,6 +30,10 @@ const Checkout = props => {
       </div>
     </div>
   );
+};
+
+Checkout.propTypes = {
+  clearBasket: PropTypes.func.isRequired
 };
 
 export default Checkout;

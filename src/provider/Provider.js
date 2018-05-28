@@ -111,7 +111,6 @@ class AppProvider extends Component {
       }
 
       if (instock.length === 0 && store.length === 0) {
-        console.log('failing.....');
         this.setState({
           itemsChunks: chunk(res.data, 32)
         });

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import enhanceWithClickOutside from 'react-click-outside';
 import { Consumer } from '../../provider/Provider';
 

@@ -7,7 +7,7 @@ class CheckoutForm extends React.Component {
         className="needs-validation"
         noValidate
         onChange={event =>
-          console.log({ [event.target.name]: event.target.valueO })
+          console.log({ [event.target.name]: event.target.value })
         }
       >
         <div className="form-row">
@@ -18,7 +18,7 @@ class CheckoutForm extends React.Component {
               className="form-control"
               id="validationCustom01"
               placeholder="First name"
-              value="Mark"
+              defaultValue="Mark"
               required
             />
             <div className="valid-feedback">Looks good!</div>
@@ -30,13 +30,13 @@ class CheckoutForm extends React.Component {
               className="form-control"
               id="validationCustom02"
               placeholder="Last name"
-              value="Otto"
+              defaultValue="Otto"
               required
             />
             <div className="valid-feedback">Looks good!</div>
           </div>
           <div className="col-md-4 mb-3">
-            <label htmlFor="validationCustomUsername">Username</label>
+            <label htmlFor="validationCustomUsername">Email</label>
             <div className="input-group">
               <div className="input-group-prepend">
                 <span className="input-group-text" id="inputGroupPrepend">
@@ -44,7 +44,7 @@ class CheckoutForm extends React.Component {
                 </span>
               </div>
               <input
-                type="text"
+                type="email"
                 className="form-control"
                 id="validationCustomUsername"
                 placeholder="Username"
@@ -64,6 +64,7 @@ class CheckoutForm extends React.Component {
               id="validationCustom03"
               placeholder="City"
               required
+              defaultValue="Tallinn"
             />
             <div className="invalid-feedback">Please provide a valid city.</div>
           </div>

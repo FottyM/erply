@@ -8,7 +8,7 @@ import { Consumer } from '../../provider/Provider';
 const ListItem = props => {
   return (
     <div className="col-12 col-sm-6 col-md-6 col-lg-3 py-3">
-      <LazyLoad height={200}>
+      <LazyLoad height={20}>
         <div className="shopping-item-card m-1 p-2 rounded d-flex flex-column">
           <Link
             to={`${props.match.url}/${props.id}`}
