@@ -54,6 +54,9 @@ const ListItem = props => {
                   style={{ cursor: !props.instock ? 'not-allowed' : '' }}
                   onClick={() => addToBasket([props])}
                 >
+                  <span>
+                    <i className="fas fa-cart-plus" />{' '}
+                  </span>
                   Add to basket
                 </button>
               );

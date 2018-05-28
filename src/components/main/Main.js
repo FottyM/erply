@@ -1,10 +1,12 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import isEmpty from 'lodash/isEmpty';
+
 import Shopping from '../shopping/';
 import Item from '../shopping/item';
 import Basket from '../basket/basket';
 import { Consumer } from '../../provider/Provider';
+import Checkout from '../checkout/checkout';
 
 const Main = () => {
   return (
@@ -12,7 +14,7 @@ const Main = () => {
       <Consumer>
         {({ basket, toggleBasket }) => (
           <div
-            className="border border-dark p-3"
+            className="border border-dark p-2 drop-shaddow bg-white"
             style={{
               position: 'fixed',
               right: 10,
@@ -22,9 +24,11 @@ const Main = () => {
             }}
             onClick={toggleBasket}
           >
-            <i className="fas fa-shopping-basket" />
+            <span>
+              <i className="fas fa-shopping-basket" />{' '}
+            </span>
             <span className="badge badge-danger">
-              {!isEmpty(basket) ? basket.length : 0}
+              {!isEmpty(basket) ? basket.length : 0}{' '}
             </span>
           </div>
         )}
@@ -40,12 +44,10 @@ const Main = () => {
         <Route path="/store/items/:item" component={Item} />
         <Route path="/store/items" component={Shopping} />
         <Route
-          path="/about"
-          render={({ match }) => (
-            <div className="container">
-              <h2>About us</h2> <p>{match.path}</p>
-            </div>
-          )}
+          path="/checkout"
+          render={() => {
+            return <Consumer>{context => <Checkout {...context} />}</Consumer>;
+          }}
         />
         <Route
           path="/contact"
@@ -57,11 +59,12 @@ const Main = () => {
         />
       </Switch>
       <Consumer>
-        {({ clearBasket, isBasketOpened, toggleBasket }) => (
+        {({ clearBasket, isBasketOpened, toggleBasket, closeBasket }) => (
           <Basket
             isOpened={isBasketOpened}
             toggle={toggleBasket}
             emptyBasket={clearBasket}
+            closeBasket={closeBasket}
           />
         )}
       </Consumer>

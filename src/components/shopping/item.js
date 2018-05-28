@@ -96,13 +96,16 @@ class Item extends Component {
               />
               <button
                 type="submit"
-                className="btn btn-warning mb-2"
+                className="btn btn-success mb-2 "
                 onClick={e => {
                   e.preventDefault();
                   addToBasket(this.state.itemCollection);
                 }}
                 disabled={!item.instock || this.state.quantity < 1}
               >
+                <span>
+                  <i className="fas fa-cart-plus" />{' '}
+                </span>
                 Add to Basket
               </button>
             </form>

@@ -22,8 +22,8 @@ const NavBar = () => (
         <NavLink className="nav-item nav-link" to="/store/items">
           Home
         </NavLink>
-        <NavLink className="nav-item nav-link" to="/about">
-          About
+        <NavLink className="nav-item nav-link" to="/checkout">
+          Checkout
         </NavLink>
         <NavLink className="nav-item nav-link" to="/contact">
           Contact

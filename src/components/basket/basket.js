@@ -2,39 +2,32 @@ import PropTypes from 'prop-types';
 import React, { Fragment, Component } from 'react';
 import isEmpty from 'lodash/isEmpty';
 import groupBy from 'lodash/groupBy';
+import enhanceWithClickOutside from 'react-click-outside';
 
 import { Consumer } from '../../provider/Provider';
 import BasketList from './basket-list';
 import BasketSubTotal from './basket-subtotal';
+import BasketCheckout from './basket-checkout';
 
 class Basket extends Component {
-  renderBasketItems = ({ basket, removeFromBasket, updateBasket }, total) => {
-    const groupedItems = groupBy(basket, 'id');
-
-    if (!isEmpty(basket)) {
-      basket.map(item => (total += item.price));
-    }
-
+  renderBasketItems = ({ basket, removeFromBasket, updateBasket }) => {
     return (
       <Fragment>
         <BasketList
           basket={basket}
-          groupedItems={groupedItems}
           removeFromBasket={removeFromBasket}
           updateBasket={updateBasket}
         />
-
-        <BasketSubTotal basket={basket} total={total} />
+        <BasketSubTotal basket={basket} />
       </Fragment>
     );
   };
 
   render() {
-    const { isOpened } = this.props;
+    const { isOpened, toggle } = this.props;
     return (
       <Consumer>
         {context => {
-          let total = 0;
           return (
             <div
               className={`basket ${
@@ -46,34 +39,18 @@ class Basket extends Component {
                   <div className="col-12">
                     <span
                       className="text-white font-weight-bold"
-                      style={{
-                        cursor: 'pointer'
-                      }}
-                      onClick={this.props.toggle}
-                      onKeyUp={e => {
-                        console.log(e);
-                      }}
+                      style={{ cursor: 'pointer' }}
+                      onClick={toggle}
                     >
                       &#x2573;
                     </span>
                     <h4 className="text-center">The Basket</h4>
-                    <hr className="text-white" />
+                    <hr />
                   </div>
                 </div>
+                <div className="row">{this.renderBasketItems(context)}</div>
                 <div className="row">
-                  {this.renderBasketItems(context, total)}
-                </div>
-                <div className="row">
-                  <div className="col-12 align-bottom">
-                    <button className="btn btn-success">Check out</button>
-                    <button
-                      className="btn btn-danger float-right"
-                      onClick={this.props.emptyBasket}
-                    >
-                      Clear basket
-                    </button>
-                    <div className="clearfix" />
-                  </div>
+                  <BasketCheckout emptyBasket={context.clearBasket} />
                 </div>
               </div>
             </div>
@@ -90,4 +67,4 @@ Basket.propTypes = {
   toggle: PropTypes.func.isRequired
 };
 
-export default Basket;
+export default enhanceWithClickOutside(Basket);

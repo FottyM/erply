@@ -64,10 +64,13 @@ class AppProvider extends Component {
     });
   };
 
+  closeBasket = () => this.setState({ isBasketOpened: false });
+
   loadDataFromServer = async function() {
     try {
-      return await axios.get('https://a5f461fb.ngrok.io/api');
+      return await axios.get('http://localhost:4000/api');
     } catch (e) {
+      console.error(e);
       throw new Error(e);
     }
     // try {
@@ -114,6 +117,7 @@ class AppProvider extends Component {
         });
       }
     });
+    // .catch(e => console.error({e}, 'the error'));
   };
 
   componentDidMount() {
@@ -122,6 +126,7 @@ class AppProvider extends Component {
         itemsChunks: chunk(res.data, 32)
       });
     });
+    // .catch(e => console.error({e}, 'the error'));
 
     try {
       const basket = JSON.parse(localStorage.getItem('basket'));
@@ -146,7 +151,8 @@ class AppProvider extends Component {
           filterItems: this.filterItems,
           clearBasket: this.clearBasket,
           toggleBasket: this.toggleBasket,
-          updateBasket: this.updateBasket
+          updateBasket: this.updateBasket,
+          closeBasket: this.closeBasket
         }}
       >
         {this.props.children}

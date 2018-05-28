@@ -69,7 +69,8 @@ class BasketItem extends Component {
               className="btn btn-primary"
               onClick={() => updateBasket(this.state.tempQTY, id)}
             >
-              Update
+              <i className="far fa-edit" />
+              {/* Update */}
             </button>
           </div>
 
@@ -78,7 +79,8 @@ class BasketItem extends Component {
               className=" btn btn-outline-danger"
               onClick={() => removeFromBasket(id)}
             >
-              Delete
+              <i className="far fa-trash-alt" />
+              {/* Delete */}
             </button>
           </div>
         </div>

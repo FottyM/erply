@@ -5,18 +5,24 @@ import pluralize from 'pluralize';
 import currencyFormatter from 'currency-formatter';
 
 class BasketSubTotal extends Component {
-  render() {
-    const { basket, total } = this.props;
+  setTotal = basket => {
+    let total = 0;
+    if (!isEmpty(basket)) basket.map(item => (total += item.price));
+    return total;
+  };
 
+  render() {
+    const { basket } = this.props;
     return (
-      <div className="col">
+      <div className="col-12">
         <div className="py-2">
           <hr />
           <h4 className="text-center font-italic">
             {pluralize('Item', !isEmpty(basket) ? basket.length : 0, true)}
           </h4>
           <h4 className="text-center font-italic">
-            Subtotal: {currencyFormatter.format(total, { code: 'EUR' })}
+            Subtotal:{' '}
+            {currencyFormatter.format(this.setTotal(basket), { code: 'EUR' })}
           </h4>
           <hr />
         </div>
@@ -26,8 +32,7 @@ class BasketSubTotal extends Component {
 }
 
 BasketSubTotal.propTypes = {
-  basket: PropTypes.array.isRequired,
-  total: PropTypes.number.isRequired
+  basket: PropTypes.array.isRequired
 };
 
 export default BasketSubTotal;

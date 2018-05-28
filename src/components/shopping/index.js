@@ -7,13 +7,17 @@ import { Consumer } from '../../provider/Provider';
 
 class Shopping extends Component {
   state = {
-    showFilters: false
+    isFiltersOpened: false
   };
 
-  updateShowFilter = () => {
+  toggleFilters = () => {
     this.setState({
-      showFilters: !this.state.showFilters
+      isFiltersOpened: !this.state.isFiltersOpened
     });
+  };
+
+  closeFiltersPane = () => {
+    this.setState({ isFiltersOpened: false });
   };
 
   render() {
@@ -27,13 +31,14 @@ class Shopping extends Component {
               <div className="row">
                 <div
                   className={`p-0 p-md-2 col-md-2 bg-light search-filters ${
-                    this.state.showFilters ? 'show' : ''
+                    this.state.isFiltersOpened ? 'show' : ''
                   }`}
                   style={{ borderRight: '1px solid grey' }}
                 >
                   <FilterSearch
-                    updateShowFilter={this.updateShowFilter}
-                    filter={this.state.showFilters}
+                    toggleFilters={this.toggleFilters}
+                    isOpened={this.state.isFiltersOpened}
+                    closeFiltersPane={this.closeFiltersPane}
                   />
                 </div>
                 <div className="col-12 col-md-10">
