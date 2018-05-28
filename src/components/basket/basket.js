@@ -17,6 +17,8 @@ class Basket extends Component {
           basket={basket}
           removeFromBasket={removeFromBasket}
           updateBasket={updateBasket}
+          bgColor="bg-darkcyan"
+          txtColor="text-light"
         />
         <BasketSubTotal basket={basket} />
       </Fragment>
@@ -50,7 +52,11 @@ class Basket extends Component {
                 </div>
                 <div className="row">{this.renderBasketItems(context)}</div>
                 <div className="row">
-                  <BasketCheckout emptyBasket={context.clearBasket} />
+                  <BasketCheckout
+                    emptyBasket={context.clearBasket}
+                    validateLabel="Checkout"
+                    clearLabel="Empty Basket"
+                  />
                 </div>
               </div>
             </div>

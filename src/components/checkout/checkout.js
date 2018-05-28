@@ -1,30 +1,33 @@
-import React, { Component } from 'react';
-import Basket from '../basket/basket';
+import React from 'react';
+import BasketList from '../basket/basket-list';
+import BasketSubTotal from '../basket/basket-subtotal';
+import BasketCheckout from '../basket/basket-checkout';
+import CheckoutForm from './checkout-form';
 
-class Checkout extends Component {
-  render() {
-    const {
-      isBasketOpened,
-      toggleBasket,
-      clearBasket,
-      closeBasket
-    } = this.props;
-    return (
-      <div className="container">
-        <div className="row">
-          <div className="col-2 offset-2">
-            <h1>Checkout</h1>
-            <Basket
-              isOpened={isBasketOpened}
-              toggle={toggleBasket}
-              emptyBasket={clearBasket}
-              closeBasket={closeBasket}
-            />
-          </div>
+const Checkout = props => {
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-12">
+          <h3 className="text-center border-bottom py-3">Checkout</h3>
         </div>
       </div>
-    );
-  }
-}
+      <div className="row">
+        <div className="col-12 py-5">
+          <CheckoutForm />
+        </div>
+      </div>
+      <div className="row">
+        <BasketList {...props} />
+        <BasketSubTotal {...props} />
+        <BasketCheckout
+          {...props}
+          validateLabel="Pay"
+          clearLabel="Cancel All"
+        />
+      </div>
+    </div>
+  );
+};
 
 export default Checkout;

@@ -5,7 +5,13 @@ import isEmpty from 'lodash/isEmpty';
 import groupBy from 'lodash/groupBy';
 import BasketItem from './basket-list-item';
 
-const BasketList = ({ basket, removeFromBasket, updateBasket }) => {
+const BasketList = ({
+  basket,
+  removeFromBasket,
+  updateBasket,
+  bgColor,
+  txtColor
+}) => {
   const groupedItems = groupBy(basket, 'id');
 
   return (
@@ -21,7 +27,7 @@ const BasketList = ({ basket, removeFromBasket, updateBasket }) => {
             return (
               <li
                 key={`${index}`}
-                className="list-group-item bg-darkcyan animated bounceIn"
+                className={`list-group-item  animated bounceIn ${bgColor} ${txtColor}`}
               >
                 <BasketItem
                   id={items[0].id}
@@ -47,7 +53,14 @@ const BasketList = ({ basket, removeFromBasket, updateBasket }) => {
 
 BasketList.propTypes = {
   basket: PropTypes.array.isRequired,
-  removeFromBasket: PropTypes.func.isRequired
+  removeFromBasket: PropTypes.func.isRequired,
+  bgColor: PropTypes.string,
+  txtColor: PropTypes.string
+};
+
+BasketList.defaultProps = {
+  bgColor: 'bg-white',
+  txtColor: 'text-black'
 };
 
 export default BasketList;
