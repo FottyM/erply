@@ -1,5 +1,29 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/39288d5c10715fcecba2/maintainability)](https://codeclimate.com/github/FottyM/erply/maintainability)
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
+## Setup
+
+- `git clone the project`
+- `cd into project`
+- `yarn install or npm install` (I am using yarn though)
+- `yarn or npm start`
+- got to * http:///localhost:3000 *
+
+NB: *The main server was shutdown from heroku, so I am using a small express server to sever the JSON files, that is why when the app runs you can see two processes running, on on port 3000 and the other on port 4000*
+
+## Features
+
+- The user can see some items in the store
+- They can add/delete,increase and decrease the number of items from the shopping cart(basket) etc...
+- There is a fake checkout page which doesn't do much at the moment...
+
+## Main techs
+
+- React, with the brand new [context api](https://reactjs.org/blog/2018/03/29/react-v-16-3.html) with some nice explanations from [wesbos](https://www.youtube.com/watch?v=XLJN4JfniH4)
+- [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
+- [ExpressJs](https://expressjs.com/)
+
 
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).

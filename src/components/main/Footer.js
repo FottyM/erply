@@ -9,7 +9,7 @@ const Footer = () => {
             Made with{' '}
             <span className="text-danger">
               <i className="fas fa-heart" />{' '}
-            </span>in Tallinn, Estonia, by{' '}
+            </span>in Tallinn, Estonia, <br /> by{' '}
             <a
               href="https://www.linkedin.com/in/fortunat-mutunda-06820a2b/"
               target="_blank"
