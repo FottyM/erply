@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { Fragment, Component } from 'react';
-import isEmpty from 'lodash/isEmpty';
-import groupBy from 'lodash/groupBy';
 import enhanceWithClickOutside from 'react-click-outside';
 
 import { Consumer } from '../../provider/Provider';

@@ -3,7 +3,13 @@ import React from 'react';
 class CheckoutForm extends React.Component {
   render() {
     return (
-      <form className="needs-validation" noValidate>
+      <form
+        className="needs-validation"
+        noValidate
+        onChange={event =>
+          console.log({ [event.target.name]: event.target.valueO })
+        }
+      >
         <div className="form-row">
           <div className="col-md-4 mb-3">
             <label htmlFor="validationCustom01">First name</label>

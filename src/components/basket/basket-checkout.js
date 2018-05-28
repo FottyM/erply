@@ -1,15 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const BasketCheckout = ({ emptyBasket, validateLabel, clearLabel }) => {
+const BasketCheckout = ({
+  emptyBasket,
+  validateLabel,
+  clearLabel,
+  closeBasket
+}) => {
   return (
     <div className="col-12 align-bottom">
-      <button className="btn btn-success">
+      <Link to="/checkout" className="btn btn-success" onClick={closeBasket}>
         <span>
           <i className="fas fa-shopping-cart" />{' '}
         </span>
         {validateLabel}
-      </button>
+      </Link>
       <button className="btn btn-danger float-right" onClick={emptyBasket}>
         <span>
           {' '}

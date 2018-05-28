@@ -2,10 +2,25 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="bg-light">
-      {/*Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nemo, non*/}
-      {/*distinctio labore hic ad rerum nesciunt praesentium similique quasi eaque*/}
-      {/*odio cumque quod fugiat iste temporibus quis quos aliquam?*/}
+    <footer className="container-fluid">
+      <div className="row">
+        <div className="col-12 bg-dark py-3 mt-5 text-white text-center">
+          <p>
+            Made with{' '}
+            <span className="text-danger">
+              <i className="fas fa-heart" />{' '}
+            </span>in Tallinn, Estonia, by{' '}
+            <a
+              href="https://www.linkedin.com/in/fortunat-mutunda-06820a2b/"
+              target="_blank"
+              className="font-weight-bold font-italic"
+            >
+              {' '}
+              Fortunat Mutunda{' '}
+            </a>
+          </p>
+        </div>
+      </div>
     </footer>
   );
 };

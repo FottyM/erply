@@ -22,7 +22,8 @@ const Checkout = props => {
         <BasketSubTotal {...props} />
         <BasketCheckout
           {...props}
-          validateLabel="Pay"
+          emptyBasket={props.clearBasket}
+          validateLabel="Confirm and Pay"
           clearLabel="Cancel All"
         />
       </div>

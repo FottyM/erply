@@ -31,7 +31,8 @@
     "react-scripts": "1.1.4",
     "redux": "^4.0.0",
     "sha256": "^0.2.0",
-    "simple-react-form": "^2.0.1"
+    "simple-react-form": "^2.0.1",
+    "tether": "^1.4.4"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",

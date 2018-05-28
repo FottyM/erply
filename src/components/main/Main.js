@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import isEmpty from 'lodash/isEmpty';
 
@@ -45,16 +45,8 @@ const Main = () => {
         <Route path="/store/items" component={Shopping} />
         <Route
           path="/checkout"
-          render={() => {
-            return <Consumer>{context => <Checkout {...context} />}</Consumer>;
-          }}
-        />
-        <Route
-          path="/contact"
-          render={({ match }) => (
-            <div className="container">
-              <h2>Call me maybe</h2> <p>{match.path}</p>
-            </div>
+          render={() => (
+            <Consumer>{context => <Checkout {...context} />}</Consumer>
           )}
         />
       </Switch>
