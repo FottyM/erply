@@ -8,7 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - `cd into project`
 - `yarn install or npm install` (I am using yarn though)
 - `yarn or npm start`
-- got to * http:///localhost:3000 *
+- got to *http://localhost:3000*
 
 NB: *The main server was shutdown from heroku, so I am using a small express server to sever the JSON files, that is why when the app runs you can see two processes running, on on port 3000 and the other on port 4000*
 
@@ -16,7 +16,7 @@ NB: *The main server was shutdown from heroku, so I am using a small express ser
 
 - The user can see some items in the store
 - They can add/delete,increase and decrease the number of items from the shopping cart(basket) etc...
-- There is a fake checkout page which doesn't do much at the moment...
+- There is a fake checkout page which does't do much at the moment...
 
 ## Main techs
 
